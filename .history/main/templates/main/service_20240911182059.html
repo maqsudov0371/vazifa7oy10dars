@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block slider %}
+{% endblock slider %}
+
+{% block content %}
+    <!-- inner header wrapper start -->
+    <div class="page_title_section float_left">
+        <div class="page_header">
+            <div class="container">
+                <div class="row">
+                    <!-- section_heading start -->
+                    <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                        <h1>Services</h1>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                        <div class="sub_title_section">
+                            <ul class="sub_title">
+                                <li><a href="#">Home</a> &nbsp;&nbsp;&nbsp; &gt; &nbsp;&nbsp;</li>
+                                <li>Services</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- inner header wrapper end -->
+    
+    <!-- blog wrapper start -->
+    <div class="blog_wrapper float_left">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        {% for service in services %}
+                        <div class="col-md-6">
+                            <div class="blog-post-wrapper iner_blog">
+                                <div class="post-thumbnail">
+                                    <img src="{{ service.image.url }}" class="img-responsive" alt="Image">
+                                </div>
+                                <div class="blog-content edu_service_header">
+                                    <header class="entry-header">
+                                        <h4 class="entry-title edu_service_heading">
+                                            <a href="{% url 'main:service_detail' pk=service.pk %}">{{ service.title }}</a>
+                                        </h4>
+                                    </header>
+                                    <div class="entry-content">
+                                        <p>{{ service.content|truncatewords:20 }}</p>
+                                    </div>
+                                    <a href="{% url 'main:service_detail' pk=service.pk %}" class="blog_read">Read More</a>
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 right_sidebar blog_single_sidebar">
+                    <!-- Search Form -->
+                    <div class="sidebar_widget float_left">
+                        <div class="widget_heading">
+                            <h2>Search feed</h2>
+                        </div>
+                        <form class="search_form" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search...">
+                            </div>
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                    
+                    <!-- Latest Posts -->
+                    <div class="sidebar_widget float_left">
+                        <div class="widget_heading">
+                            <h2>Latest Posts</h2>
+                        </div>
+                        {% for service in services %}
+                        <div class="blog_wrapper22 float_left">
+                            <div class="blog_image">
+                                <img src="{{ service.image.url }}" class="img-responsive" alt="blog_img1" style="height: 100px; width: 80px;" />
+                            </div>
+                            <div class="blog_text">
+                                <h5><a href="#">{{ service.content }}</a></h5>
+                                <div class="blog_date">{{ service.created_at }}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- blog wrapper end -->
+    
+    <!-- edu letter wrapper Start -->
+    <div class="edu_letter_main_wrapper float_left">
+        <div class="container">
+            <div class="edu_left_envo">
+                <img src="images/innn.png" alt="img">
+                <h3>Sign Up for Newsletter</h3>
+            </div>
+            <div class="edu_right_form">
+                <input type="text" placeholder="Enter your email">
+                <button>Sign Up</button>
+            </div>
+        </div>
+    </div>
+    <!-- edu letter wrapper End -->
+{% endblock content %}
